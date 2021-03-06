@@ -1,0 +1,40 @@
+.launchCard_img{
+    object-fit: cover;
+    width: 100%;
+    height: 15rem !important;
+}
+
+.launchCard_body{
+    height: 15rem !important;
+}
+
+
+@media (max-width: 1570px) { 
+    .launchCard_body{
+        height: 17rem !important;
+    }
+    .launchCard_img{
+        height: 17rem !important;
+    }
+
+ }
+
+ @media (max-width: 1270px) { 
+    .launchCard_body{
+        height: 19rem !important;
+    }
+    .launchCard_img{
+        height: 19rem !important;
+    }
+
+ }
+
+ @media (max-width: 990px) { 
+    .launchCard_body{
+        height: 15rem !important;
+    }
+    .launchCard_img{
+        height: 15rem !important;
+    }
+
+ }
