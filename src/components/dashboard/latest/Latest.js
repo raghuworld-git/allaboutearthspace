@@ -4,7 +4,7 @@ import LaunchCard from '../../shared/launchCard/LaunchCard';
 
 const Latest = () => {
     return (
-        <MDBContainer fluid>
+        <MDBContainer>
             <MDBRow>
                 <MDBCol lg='6' md='6' sm='12' className='mb-3'>
                     <section>

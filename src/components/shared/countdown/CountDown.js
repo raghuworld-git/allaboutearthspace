@@ -38,10 +38,11 @@ const CountDown = ({ launchDateTime = '2021-03-10T02:58:00Z' }) => {
     return (
         <>
             <MDBTypography tag='h2' variant="h2-responsive">
-                T -  {formatNumber(timeLeft.days)} <small style={{ fontSize: '1rem' }} className="text-muted">d</small> : {formatNumber(timeLeft.hours)} <small style={{ fontSize: '1rem' }} className="text-muted">h</small> : {formatNumber(timeLeft.minutes)} <small style={{ fontSize: '1rem' }} className="text-muted">m</small> : {formatNumber(timeLeft.seconds)} <small style={{ fontSize: '1rem' }} className="text-muted">s</small>
+                T-  {formatNumber(timeLeft.days)} <small style={{ fontSize: '1rem' }} className="text-muted">d</small> : {formatNumber(timeLeft.hours)} <small style={{ fontSize: '1rem' }} className="text-muted">h</small> : {formatNumber(timeLeft.minutes)} <small style={{ fontSize: '1rem' }} className="text-muted">m</small> : {formatNumber(timeLeft.seconds)} <small style={{ fontSize: '1rem' }} className="text-muted">s</small>
             </MDBTypography>
         </>
     )
 }
+
 
 export default CountDown
