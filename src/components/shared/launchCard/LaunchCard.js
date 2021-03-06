@@ -1,4 +1,4 @@
-import { MDBBadge, MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBIcon, MDBRow, MDBTypography } from 'mdbreact'
+import { MDBBadge, MDBCard, MDBCardBody, MDBIcon, MDBTypography } from 'mdbreact'
 import React from 'react';
 import CountDown from '../countdown/CountDown';
 
