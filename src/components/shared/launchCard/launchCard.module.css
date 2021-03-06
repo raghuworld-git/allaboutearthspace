@@ -38,13 +38,3 @@
     }
 
  }
-
- @media (max-width: 521px) { 
-    .launchCard_body{
-        height: 10rem !important;
-    }
-    .launchCard_img{
-        height: 10rem !important;
-    }
-
- }
