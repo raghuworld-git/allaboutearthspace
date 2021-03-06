@@ -20,7 +20,7 @@ const LaunchCard = () => {
                             <MDBTypography tag='h5' variant="h5-responsive"> <MDBBadge color="green">Success</MDBBadge></MDBTypography>
                             <MDBTypography tag='h5' variant="h5-responsive" className='mt-3'> <MDBIcon icon="map-marker-alt" />{' '} Cape Canaveral, FL, USA</MDBTypography>
 
-                            <a href="/" className="btn btn-outline-primary">For more</a>
+                            <a href="/" className="btn btn-outline-dark">For more</a>
 
                         </MDBCardBody>
                     </MDBCol>

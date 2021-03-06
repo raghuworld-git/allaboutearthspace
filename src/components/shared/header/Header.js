@@ -8,7 +8,7 @@ const Header = () => {
         setIsOpen(!isOpen);
     }
     return (
-        <MDBNavbar fixed='top' expand='lg' light>
+        <MDBNavbar color="elegant-color" fixed='top' dark expand="md">
             <MDBContainer fluid>
                 <MDBNavbarBrand>
                     <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="16" alt="" loading="lazy"
