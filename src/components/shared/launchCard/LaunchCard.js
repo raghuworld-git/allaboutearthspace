@@ -28,7 +28,7 @@ const LaunchCard = () => {
             </MDBCard> */}
             <MDBCard style={{
                 backgroundImage:
-                    "url(https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/falcon2520925_image_20210218213404.png)", backgroundSize: 'cover'
+                    "url(https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/launch_images/falcon2520925_image_20210218213404.png)", backgroundSize: '100% 20rem,cover'
             }}>
                 <MDBCardBody className={`text-center mt-4 rgba-black-light ${styles.launchCard_body}`}>
                     <CountDown />
