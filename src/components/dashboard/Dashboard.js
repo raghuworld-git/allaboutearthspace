@@ -43,13 +43,13 @@ const Dashboard = ({ getNextLaunch, nextLaunch }) => {
                     <MDBCol lg='6' md='12' sm='12' className='mb-3'>
                         <section>
                             <MDBTypography tag='h4' variant="h4-responsive"><strong>Next Launch</strong></MDBTypography>
-                            <LaunchCard imgURL={imgURL} id={id} net={net} name={name} launchLocation={launchLocation} launchStatus={launchStatus} footer={footerCard} />
+                            <LaunchCard imgURL={imgURL} id={id} net={net} name={name} launchLocation={launchLocation} launchStatus={launchStatus} />
                         </section>
                     </MDBCol>
                     <MDBCol lg='6' md='12' sm='12' className='mb-3'>
                         <section>
                             <MDBTypography tag='h4' variant="h4-responsive"><strong>Next Launch</strong></MDBTypography>
-                            <LaunchCard footer={footerCard} imgURL='https://images.unsplash.com/photo-1484589065579-248aad0d8b13?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=696&q=80' />
+                            <LaunchCard imgURL='https://images.unsplash.com/photo-1484589065579-248aad0d8b13?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=696&q=80' />
                         </section>
                     </MDBCol>
                 </MDBRow>
