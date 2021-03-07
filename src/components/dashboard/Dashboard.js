@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
-import { MDBBtnGroup, MDBCardFooter, MDBCol, MDBContainer, MDBRow, MDBTypography } from 'mdbreact'
+import { MDBCol, MDBContainer, MDBRow, MDBTypography } from 'mdbreact'
 import LaunchCard from '../shared/launchCard/LaunchCard';
 
 import { getNextLaunch } from '../../actions/launchActions';
 import { connect } from 'react-redux';
 
-import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 const Dashboard = ({ getNextLaunch, nextLaunch }) => {
@@ -25,13 +24,6 @@ const Dashboard = ({ getNextLaunch, nextLaunch }) => {
     const { image: imgURL, id, net, status, name, pad } = nextLaunch;
     const { abbrev: launchStatus } = status;
     const { name: launchLocation } = pad.location;
-
-    const footerCard = (<MDBCardFooter className='text-center'>
-        <MDBBtnGroup size="md">
-            <Link to='/launches/upcoming' className="btn  btn-info">Future launches</Link>
-            <Link to='launches/previous' className="btn  btn-info">Previous launches</Link>
-        </MDBBtnGroup>
-    </MDBCardFooter>)
 
     return (
         <>

@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <MDBNavbar color="elegant-color" fixed='top' dark expand="md">
             <MDBContainer fluid>
-                <MDBNavbarBrand>
+                <MDBNavbarBrand href='/'>
                     <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="16" alt="" loading="lazy"
                         style={{ marginTop: '-3px' }} />
                 </MDBNavbarBrand>
@@ -18,14 +18,14 @@ const Header = () => {
                 <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
                     <MDBNavbarNav left>
                         <MDBNavItem>
-                            <MDBNavLink to="#!">Home</MDBNavLink>
+                            <MDBNavLink to="/launches">Launches</MDBNavLink>
                         </MDBNavItem>
-                        <MDBNavItem>
+                        {/* <MDBNavItem>
                             <MDBNavLink to="#!">Features</MDBNavLink>
                         </MDBNavItem>
                         <MDBNavItem>
                             <MDBNavLink to="#!">Pricing</MDBNavLink>
-                        </MDBNavItem>
+                        </MDBNavItem> */}
                         {/* <MDBNavItem>
                             <MDBDropdown>
                                 <MDBDropdownToggle nav caret>

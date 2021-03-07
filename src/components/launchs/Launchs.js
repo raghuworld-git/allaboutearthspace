@@ -1,28 +1,34 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-
 
 import { connect } from 'react-redux';
 import { getUpcomingLaunches } from '../../actions/launchActions';
-import { MDBBtn, MDBCol, MDBRow, MDBTypography } from 'mdbreact';
+import { MDBCol, MDBRow, MDBTypography } from 'mdbreact';
 import LaunchCard from '../shared/launchCard/LaunchCard';
 import { Helmet } from 'react-helmet';
+import Pagination from '../shared/Pagination';
 
 
 const Launchs = ({ upcomingLaunches, getUpcomingLaunches }) => {
 
-    const { type } = useParams();
+    const pageLimit = 8;
 
     useEffect(() => {
-        if (type === 'upcoming') {
-            getUpcomingLaunches();
-        }
+
+        getUpcomingLaunches();
+
     }, [])
 
     if (!upcomingLaunches.data) {
         return null;
     }
-    const { data } = upcomingLaunches;
+    const { data, count } = upcomingLaunches;
+
+
+    const pageClickHander = (selectedPage) => {
+        let offset = Math.ceil(selectedPage * pageLimit);
+        getUpcomingLaunches(pageLimit, offset);
+        window.scrollTo(0, 0);
+    }
 
     const renderLaunches = () => {
         return (
@@ -42,21 +48,23 @@ const Launchs = ({ upcomingLaunches, getUpcomingLaunches }) => {
     return (
         <>
             <Helmet>
-                <title>{type} Launches</title>
+                <title>Launches</title>
             </Helmet>
             <MDBRow>
-                <MDBCol md='4' sm='4' lg='4'>
-                    <MDBBtn className='float-left'>Back </MDBBtn>
-                </MDBCol>
-                <MDBCol md='4' sm='4' lg='4' className='text-center'>
-                    <MDBTypography tag='h4' variant="h4-responsive" className='text-capitalize'>{type} Launches</MDBTypography>
-                </MDBCol>
-                <MDBCol md='4' sm='4' lg='4'>
-
+                <MDBCol md='12' sm='12' lg='12' className='text-center'>
+                    <MDBTypography tag='h3' variant="h3-responsive" className='text-capitalize'>Upcoming Launches</MDBTypography>
                 </MDBCol>
             </MDBRow>
+            {/* <MDBRow>
+                <LaunchFilters />
+            </MDBRow> */}
             <MDBRow>
                 {renderLaunches()}
+            </MDBRow>
+            <MDBRow>
+                <MDBCol md='12' sm='12' lg='12' className='text-center'>
+                    <Pagination totalCount={count} pageLimit={pageLimit} pageClickHander={pageClickHander} />
+                </MDBCol>
             </MDBRow>
         </>
     )
