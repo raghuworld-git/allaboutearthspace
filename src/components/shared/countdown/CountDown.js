@@ -1,5 +1,5 @@
-import { MDBTypography } from 'mdbreact';
 import React, { useState, useEffect } from 'react';
+import { formatNumber } from '../../../utils/utility';
 
 const CountDown = ({ launchDateTime = '2021-03-10T02:58:00Z' }) => {
 
@@ -18,12 +18,7 @@ const CountDown = ({ launchDateTime = '2021-03-10T02:58:00Z' }) => {
         return timeLeft;
     }
 
-    const formatNumber = (num) => {
-        if (!num) {
-            return '00'
-        }
-        return num.toString().length === 1 ? `0${num}` : num;
-    }
+
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
 
@@ -37,9 +32,8 @@ const CountDown = ({ launchDateTime = '2021-03-10T02:58:00Z' }) => {
 
     return (
         <>
-            <MDBTypography tag='h2' variant="h2-responsive">
-                T-  {formatNumber(timeLeft.days)} <small style={{ fontSize: '1rem' }} className="text-muted">d</small> : {formatNumber(timeLeft.hours)} <small style={{ fontSize: '1rem' }} className="text-muted">h</small> : {formatNumber(timeLeft.minutes)} <small style={{ fontSize: '1rem' }} className="text-muted">m</small> : {formatNumber(timeLeft.seconds)} <small style={{ fontSize: '1rem' }} className="text-muted">s</small>
-            </MDBTypography>
+
+            T-  {formatNumber(timeLeft.days)} <small>d</small> : {formatNumber(timeLeft.hours)} <small>h</small> : {formatNumber(timeLeft.minutes)} <small>m</small> : {formatNumber(timeLeft.seconds)} <small>s</small>
         </>
     )
 }
