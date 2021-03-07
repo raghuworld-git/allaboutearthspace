@@ -8,6 +8,7 @@ import agencyByIdReducer from './agency/agencyByIdReducer';
 
 import nextLaunchReducer from './launches/nextLaunchReducer';
 import upcomingLaunchesReducer from './launches/upcomingLaunchesReducer';
+import launchDetailsReducer from './launches/launchDetailsReducer';
 
 export default combineReducers({
     astronauts: astronautsReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
     agencyDetails: agencyByIdReducer,
     agencies: agencysReducer,
     nextLaunch: nextLaunchReducer,
-    upcomingLaunches: upcomingLaunchesReducer
+    upcomingLaunches: upcomingLaunchesReducer,
+    launchDetails: launchDetailsReducer
 });

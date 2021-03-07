@@ -1,5 +1,5 @@
 import { launchAPI } from '../api/launchAPI';
-import { NEXTLAUNCH, UPCOMINGLAUNCHS } from './types';
+import { NEXTLAUNCH, UPCOMINGLAUNCHS, LAUNCH_BY_ID } from './types';
 
 const upcoming = '/upcoming'
 
@@ -27,6 +27,18 @@ export const getUpcomingLaunches = (limit = 8, offset = 0) => {
         });
     };
 };
+
+
+export const getLaunchDetails = (id) => {
+    return async (dispatch) => {
+        const res = await launchAPI.get(`/${id}`);
+        dispatch({
+            type: LAUNCH_BY_ID,
+            payload: res.data
+        });
+    };
+};
+
 
 // export const getAstronauts = (limit = 8, offset = 0) => {
 //     return async (dispatch) => {

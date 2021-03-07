@@ -14,7 +14,7 @@ const AppRoute = ({ children }) => {
                 <MDBContainer>
                     <Switch>
                         <Route path='/launches' exact component={Launches} />
-                        <Route path='/launchDetails/:id' component={LaunchDetails} />
+                        <Route path='/launchDetails/:id/:name?' component={LaunchDetails} />
                         <Route path='/' exact component={Dashboard} />
                         <Route>
                             Oops

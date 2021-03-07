@@ -6,6 +6,7 @@ import { getNextLaunch } from '../../actions/launchActions';
 import { connect } from 'react-redux';
 
 import { Helmet } from 'react-helmet';
+import Loader from '../shared/Loader';
 
 const Dashboard = ({ getNextLaunch, nextLaunch }) => {
 
@@ -15,9 +16,7 @@ const Dashboard = ({ getNextLaunch, nextLaunch }) => {
 
     if (Object.keys(nextLaunch).length === 0) {
         return (
-            <div className="spinner-border text-primary" role="status">
-                <span className="sr-only">Loading...</span>
-            </div>
+            <Loader />
         )
     }
 

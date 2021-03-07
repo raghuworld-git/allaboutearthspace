@@ -1,0 +1,5 @@
+.launchDetailsImage{
+    width: 100% !important;
+    height: 30rem;
+    object-fit: contain;
+}

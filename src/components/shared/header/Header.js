@@ -18,6 +18,9 @@ const Header = () => {
                 <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
                     <MDBNavbarNav left>
                         <MDBNavItem>
+                            <MDBNavLink to="/">Home</MDBNavLink>
+                        </MDBNavItem>
+                        <MDBNavItem>
                             <MDBNavLink to="/launches">Launches</MDBNavLink>
                         </MDBNavItem>
                         {/* <MDBNavItem>
