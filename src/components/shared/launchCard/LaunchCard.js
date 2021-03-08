@@ -22,7 +22,7 @@ const LaunchCard = ({ imgURL, id, net, name, launchLocation, launchStatus, foote
                     </MDBTypography>
                     <MDBTypography tag='h5' variant="h5-responsive" className='mt-3 text-truncate'> {name}</MDBTypography>
                     <MDBTypography tag='h5' variant="h5-responsive" className='mt-3'> <MDBBadge color={launchStatusIndicator(launchStatus)}>{launchStatus}</MDBBadge></MDBTypography>
-                    <MDBTypography tag='h5' variant="h5-responsive" className='mt-3'> {getFormattedDateTime(net)}</MDBTypography>
+                    <MDBTypography tag='h5' variant="h5-responsive" className='mt-3'><MDBIcon far icon="clock" /> {getFormattedDateTime(net)}</MDBTypography>
                     <MDBTypography tag='h5' variant="h5-responsive" className='mt-3 text-truncate'> <MDBIcon icon="map-marker-alt" />&nbsp; {launchLocation}</MDBTypography>
                     <Link to={`/launchDetails/${id}/${name}`} className="btn  btn-sm btn-primary mt-2">For more</Link>
                 </MDBCardBody>
