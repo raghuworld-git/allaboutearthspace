@@ -1,32 +1,37 @@
 import React, { useEffect } from 'react';
 
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getUpcomingLaunches } from '../../actions/launchActions';
 import { MDBCol, MDBRow, MDBTypography } from 'mdbreact';
 import LaunchCard from '../shared/launchCard/LaunchCard';
 import { Helmet } from 'react-helmet';
 import Pagination from '../shared/Pagination';
+import Loader from '../shared/Loader';
 
 
-const Launchs = ({ upcomingLaunches, getUpcomingLaunches }) => {
+const Launchs = () => {
 
     const pageLimit = 8;
 
+    const dispatch = useDispatch();
+    const upcomingLaunches = useSelector(state => state.upcomingLaunches);
+
     useEffect(() => {
-
-        getUpcomingLaunches();
-
-    }, [])
+        dispatch(getUpcomingLaunches());
+        return () => dispatch((getUpcomingLaunches(pageLimit, 0, true)))
+    }, [dispatch])
 
     if (!upcomingLaunches.data) {
-        return null;
+        return < Loader />;
     }
+
+
     const { data, count } = upcomingLaunches;
 
 
     const pageClickHander = (selectedPage) => {
         let offset = Math.ceil(selectedPage * pageLimit);
-        getUpcomingLaunches(pageLimit, offset);
+        dispatch(getUpcomingLaunches(pageLimit, offset));
         window.scrollTo(0, 0);
     }
 
@@ -70,10 +75,4 @@ const Launchs = ({ upcomingLaunches, getUpcomingLaunches }) => {
     )
 }
 
-const mapStateToMaps = (state) => {
-    return {
-        upcomingLaunches: state.upcomingLaunches
-    }
-}
-
-export default connect(mapStateToMaps, { getUpcomingLaunches })(Launchs)
+export default Launchs;

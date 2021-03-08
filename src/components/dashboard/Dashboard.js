@@ -3,18 +3,22 @@ import { MDBCol, MDBContainer, MDBRow, MDBTypography } from 'mdbreact'
 import LaunchCard from '../shared/launchCard/LaunchCard';
 
 import { getNextLaunch } from '../../actions/launchActions';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Helmet } from 'react-helmet';
 import Loader from '../shared/Loader';
 
-const Dashboard = ({ getNextLaunch, nextLaunch }) => {
+const Dashboard = () => {
 
+    const dispatch = useDispatch();
+    const nextLaunch = useSelector(state => state.nextLaunch.data);
     useEffect(() => {
-        getNextLaunch();
-    }, [])
+        dispatch(getNextLaunch());
 
-    if (Object.keys(nextLaunch).length === 0) {
+        return () => dispatch(getNextLaunch(true));
+    }, [dispatch])
+
+    if (!nextLaunch) {
         return (
             <Loader />
         )
@@ -49,10 +53,4 @@ const Dashboard = ({ getNextLaunch, nextLaunch }) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        nextLaunch: state.nextLaunch
-    }
-}
-
-export default connect(mapStateToProps, { getNextLaunch })(Dashboard)
+export default Dashboard

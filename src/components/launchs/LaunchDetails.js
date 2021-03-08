@@ -2,25 +2,27 @@ import { MDBBadge, MDBCard, MDBCardBody, MDBCol, MDBContainer, MDBIcon, MDBRow, 
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom'
-import { connect } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 
 import Loader from '../shared/Loader'
 import CountDown from '../shared/countdown/CountDown';
 import { getLaunchDetails } from '../../actions/launchActions'
 
-import styles from './launch.module.css';
 import { getFormattedDateTime, launchStatusIndicator } from '../../utils/utility';
 
-const LaunchDetails = ({ getLaunchDetails, launchDetails }) => {
+const LaunchDetails = () => {
 
     const { id, name } = useParams();
+    const dispatch = useDispatch();
+    const launchDetails = useSelector(state => state.launchDetails.data, shallowEqual);
 
     useEffect(() => {
-        getLaunchDetails(id);
-    }, [])
+        dispatch(getLaunchDetails(id));
+        return () => dispatch(getLaunchDetails(null, true));
+    }, [id, dispatch])
 
-    console.log(launchDetails)
-    if (Object.keys(launchDetails).length === 0) {
+
+    if (!launchDetails) {
         return (
             <Loader />
         )
@@ -64,9 +66,4 @@ const LaunchDetails = ({ getLaunchDetails, launchDetails }) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        launchDetails: state.launchDetails
-    }
-}
-export default connect(mapStateToProps, { getLaunchDetails })(LaunchDetails)
+export default LaunchDetails
