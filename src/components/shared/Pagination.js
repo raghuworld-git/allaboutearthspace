@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 
-const Pagination = ({ totalCount, pageLimit, pageClickHander }) => {
+const Pagination = ({ totalCount, pageLimit, pageClickHander, pageNumber }) => {
 
     const pageCount = Math.ceil(totalCount / pageLimit);
 
@@ -27,6 +27,7 @@ const Pagination = ({ totalCount, pageLimit, pageClickHander }) => {
                 onPageChange={handlePageClick}
                 containerClassName={'pagination justify-content-center'}
                 activeClassName={'active bg-primary'}
+                forcePage={pageNumber}
 
             />
         </>

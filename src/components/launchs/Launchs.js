@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getUpcomingLaunches } from '../../actions/launchActions';
@@ -9,17 +9,26 @@ import Pagination from '../shared/Pagination';
 import Loader from '../shared/Loader';
 
 
-const Launchs = () => {
+const Launchs = ({ history }) => {
 
     const pageLimit = 8;
+
+    const [selectpage, setSelectpage] = useState(null);
 
     const dispatch = useDispatch();
     const upcomingLaunches = useSelector(state => state.upcomingLaunches);
 
     useEffect(() => {
-        dispatch(getUpcomingLaunches());
+
+        if (selectpage) {
+            let offset = Math.ceil(selectpage * pageLimit);
+            dispatch(getUpcomingLaunches(pageLimit, offset));
+        }
+        else {
+            dispatch(getUpcomingLaunches());
+        }
         return () => dispatch((getUpcomingLaunches(pageLimit, 0, true)))
-    }, [dispatch])
+    }, [dispatch, selectpage])
 
     if (!upcomingLaunches.data) {
         return < Loader />;
@@ -30,8 +39,8 @@ const Launchs = () => {
 
 
     const pageClickHander = (selectedPage) => {
-        let offset = Math.ceil(selectedPage * pageLimit);
-        dispatch(getUpcomingLaunches(pageLimit, offset));
+        setSelectpage(selectedPage);
+
         window.scrollTo(0, 0);
     }
 
@@ -43,7 +52,7 @@ const Launchs = () => {
                 const { name: launchLocation } = pad.location;
                 return (
                     <MDBCol key={id} lg='6' md='6' sm='12' className='mb-3'>
-                        <LaunchCard imgURL={imgURL} id={id} net={net} name={name} launchLocation={launchLocation} launchStatus={launchStatus} />
+                        <LaunchCard imgURL={imgURL} id={id} net={net} name={name} launchLocation={launchLocation} launchStatus={launchStatus} additionalqueryParams={`/${selectpage == null ? 0 : selectpage}`} />
                     </MDBCol>
                 )
             })
@@ -68,7 +77,7 @@ const Launchs = () => {
             </MDBRow>
             <MDBRow>
                 <MDBCol md='12' sm='12' lg='12' className='text-center'>
-                    <Pagination totalCount={count} pageLimit={pageLimit} pageClickHander={pageClickHander} />
+                    <Pagination totalCount={count} pageLimit={pageLimit} pageClickHander={pageClickHander} pageNumber={selectpage} />
                 </MDBCol>
             </MDBRow>
         </>
