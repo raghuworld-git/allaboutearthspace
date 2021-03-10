@@ -1,4 +1,5 @@
 import { launchAPI } from '../api/launchAPI';
+import { countryDetailAPI } from '../api/countryDetailAPI';
 import { NEXTLAUNCH, UPCOMINGLAUNCHS, LAUNCH_BY_ID } from './types';
 
 const upcoming = '/upcoming'
@@ -6,7 +7,7 @@ const upcoming = '/upcoming'
 export const getNextLaunch = (clear = false) => {
     if (!clear) {
         return async (dispatch) => {
-            const res = await launchAPI.get(`${upcoming}/?limit=1`);
+            const res = await launchAPI.get(`${upcoming}/?limit=1&mode=detailed`);
             dispatch({
                 type: NEXTLAUNCH,
                 payload: {
@@ -30,7 +31,7 @@ export const getNextLaunch = (clear = false) => {
 export const getUpcomingLaunches = (limit = 8, offset = 0, clear = false) => {
     if (!clear) {
         return async (dispatch) => {
-            const res = await launchAPI.get(`${upcoming}/?limit=${limit}&offset=${offset}`);
+            const res = await launchAPI.get(`${upcoming}/?limit=${limit}&offset=${offset}&mode=detailed`);
             dispatch({
                 type: UPCOMINGLAUNCHS,
                 payload: {
@@ -57,10 +58,13 @@ export const getUpcomingLaunches = (limit = 8, offset = 0, clear = false) => {
 export const getLaunchDetails = (id = null, clear = false) => {
     if (!clear) {
         return async (dispatch) => {
-            const res = await launchAPI.get(`/${id}`);
+            const res = await launchAPI.get(`/${id}/`);
+            const launchDetails = res.data;
+            const countryMapRes = await countryDetailAPI.get(`${launchDetails.launch_service_provider.country_code}`)
+
             dispatch({
                 type: LAUNCH_BY_ID,
-                payload: { data: res.data }
+                payload: { data: launchDetails, countryMap: countryMapRes.data?.flag }
             });
         };
     }

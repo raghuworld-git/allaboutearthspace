@@ -24,9 +24,10 @@ const Dashboard = () => {
         )
     }
 
-    const { image: imgURL, id, net, status, name, pad } = nextLaunch;
+    const { image: imgURL, id, net, status, name, pad, launch_service_provider } = nextLaunch;
     const { abbrev: launchStatus } = status;
     const { name: launchLocation } = pad.location;
+    const { name: launchServiceProviderName } = launch_service_provider;//Agency
 
     return (
         <>
@@ -38,7 +39,7 @@ const Dashboard = () => {
                     <MDBCol lg='6' md='12' sm='12' className='mb-3'>
                         <section>
                             <MDBTypography tag='h4' variant="h4-responsive"><strong>Next Launch</strong></MDBTypography>
-                            <LaunchCard imgURL={imgURL} id={id} net={net} name={name} launchLocation={launchLocation} launchStatus={launchStatus} />
+                            <LaunchCard imgURL={imgURL} id={id} net={net} name={name} launchLocation={launchLocation} launchStatus={launchStatus} agency={launchServiceProviderName} />
                         </section>
                     </MDBCol>
                     <MDBCol lg='6' md='12' sm='12' className='mb-3'>

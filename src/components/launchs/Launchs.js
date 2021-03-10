@@ -47,12 +47,13 @@ const Launchs = ({ history }) => {
     const renderLaunches = () => {
         return (
             data.map((item) => {
-                const { image: imgURL, id, net, status, name, pad } = item;
+                const { image: imgURL, id, net, status, name, pad, launch_service_provider } = item;
                 const { abbrev: launchStatus } = status;
                 const { name: launchLocation } = pad.location;
+                const { name: launchServiceProviderName } = launch_service_provider;//Agency
                 return (
                     <MDBCol key={id} lg='6' md='6' sm='12' className='mb-3'>
-                        <LaunchCard imgURL={imgURL} id={id} net={net} name={name} launchLocation={launchLocation} launchStatus={launchStatus} additionalqueryParams={`/${selectpage == null ? 0 : selectpage}`} />
+                        <LaunchCard imgURL={imgURL} id={id} net={net} name={name} launchLocation={launchLocation} launchStatus={launchStatus} additionalqueryParams={`${selectpage == null ? 0 : selectpage}`} agency={launchServiceProviderName} />
                     </MDBCol>
                 )
             })

@@ -9,16 +9,16 @@ import CountDown from '../shared/countdown/CountDown';
 import { getLaunchDetails } from '../../actions/launchActions'
 
 import { getFormattedDateTime, launchStatusIndicator } from '../../utils/utility';
+import AgencyCard from '../shared/agencyCard/AgencyCard';
 
 const LaunchDetails = () => {
 
-    const { id, name } = useParams();
+    const { id } = useParams();
     const dispatch = useDispatch();
-    const launchDetails = useSelector(state => state.launchDetails.data, shallowEqual);
+    const { data: launchDetails, countryMap } = useSelector(state => state.launchDetails, shallowEqual);
 
     useEffect(() => {
         dispatch(getLaunchDetails(id));
-
         return () => dispatch(getLaunchDetails(null, true));
     }, [id, dispatch])
 
@@ -28,12 +28,13 @@ const LaunchDetails = () => {
             <Loader />
         )
     }
-    console.log(launchDetails);
-    const { name: apiName, image, net, status, pad, mission } = launchDetails;
+
+    const { name, image, net, status, pad, mission, launch_service_provider } = launchDetails;
     const { abbrev: launchStatus } = status;
     const { name: launchLocation } = pad.location;
     const missionDescription = mission?.description;
-
+    const { logo_url: agencyLogoURL, name: agencyName, abbrev: agencyAbbr } = launch_service_provider;
+    console.log(launchDetails);
 
     return (
         <>
@@ -42,7 +43,7 @@ const LaunchDetails = () => {
             </Helmet>
             <MDBRow>
                 <MDBCol md='12' sm='12' lg='12' className='text-center'>
-                    <MDBTypography tag='h3' variant="h3-responsive" className='text-capitalize'>{apiName}</MDBTypography>
+                    <MDBTypography tag='h3' variant="h3-responsive" className='text-capitalize'>{name}</MDBTypography>
                 </MDBCol>
             </MDBRow>
             <MDBRow className='mt-3 mb-2'>
@@ -51,7 +52,7 @@ const LaunchDetails = () => {
                     <MDBCard color='black' className='white-text'>
                         <MDBRow className='no-gutters'>
                             <MDBCol md='12' lg='5' sm='12'>
-                                <img src={image} width='100%' height='400rem' alt={apiName} />
+                                <img src={image} width='100%' height='400rem' alt={name} />
                             </MDBCol>
                             <MDBCol md='12' lg='7' sm='12'>
                                 <MDBCardBody className='text-center'>
@@ -75,6 +76,13 @@ const LaunchDetails = () => {
                             <p className='text-center font-weight-normal'>{missionDescription || 'Mission description not available'}</p>
                         </MDBCardBody>
                     </MDBCard>
+                </MDBCol>
+            </MDBRow>
+            <MDBRow>
+                <MDBCol lg='6' md='6' sm='12' className='mb-3'>
+                    <AgencyCard imgURL={agencyLogoURL} agencyName={`${agencyName} (${agencyAbbr})`} countryMap={countryMap} />
+                </MDBCol>
+                <MDBCol lg='6' md='6' sm='12' className='mb-3'>
 
                 </MDBCol>
             </MDBRow>
