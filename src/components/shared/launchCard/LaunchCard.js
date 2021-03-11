@@ -18,9 +18,9 @@ const LaunchCard = ({ imgURL, id, net, name, launchLocation, launchStatus, agenc
                     `url(${imgURL})`, backgroundSize: '100% 20rem,cover'
             }}>
                 <MDBCardBody className={`text-center rgba-black-light ${styles.launchCard_body}`}>
-                    <MDBTypography tag='h2' variant="h2-responsive">
+                    {launchStatus === 'Success' || launchStatus === 'Failure' || launchStatus === 'Partial Failure' ? null : <MDBTypography tag='h2' variant="h2-responsive">
                         <CountDown launchDateTime={net} />
-                    </MDBTypography>
+                    </MDBTypography>}
                     <MDBTypography tag='h5' variant="h5-responsive" className='mt-3 text-truncate'> {name}</MDBTypography>
                     <MDBTypography tag='h5' variant="h5-responsive" className='mt-3'> <MDBBadge color={launchStatusIndicator(launchStatus)}>{launchStatus}</MDBBadge></MDBTypography>
                     <MDBTypography tag='h5' variant="h5-responsive" className='mt-3'><MDBIcon far icon="clock" /> {getFormattedDateTime(net)}</MDBTypography>
